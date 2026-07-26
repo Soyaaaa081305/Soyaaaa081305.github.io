@@ -1,17 +1,5 @@
 # Isaiah Andrei Noda — Portfolio
 
-An interactive personal portfolio covering full-stack, mobile, web, desktop,
-algorithm, and automation projects.
-
-## Highlights
-
-- Filterable project explorer with detailed case-study panels
-- Real repository imagery and project-documentation previews
-- Technical toolkit, education, achievements, and leadership timeline
-- Verified Coursera credential links
-- Downloadable detailed CV and direct contact links
-- Responsive, keyboard-accessible design
-
 ## Local development
 
 ```bash
