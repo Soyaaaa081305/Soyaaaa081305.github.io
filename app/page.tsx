@@ -452,7 +452,6 @@ export default function Home() {
           <div className="hero-meta">
             <span>San Pedro, Laguna</span>
             <span>Mapúa MCL · BSIT 2028</span>
-            <span>JISSA President</span>
           </div>
         </div>
 
@@ -476,10 +475,6 @@ export default function Home() {
             <div>
               <strong>5</strong>
               <span>certificates</span>
-            </div>
-            <div>
-              <strong>4×</strong>
-              <span>Dean’s List</span>
             </div>
           </div>
         </aside>
@@ -792,7 +787,6 @@ export default function Home() {
                 <p>Mapúa Malayan Colleges Laguna</p>
                 <h3>Bachelor of Science in Information Technology</h3>
                 <ul>
-                  <li>Dean’s Lister across four trimesters</li>
                   <li>Full Academic Scholarship recipient</li>
                   <li>C# Programming Competition participant</li>
                 </ul>
