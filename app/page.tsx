@@ -393,9 +393,6 @@ export default function Home() {
           <a href="#work" onClick={() => setMenuOpen(false)}>
             Work
           </a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>
-            About
-          </a>
           <a href="#journey" onClick={() => setMenuOpen(false)}>
             Journey
           </a>
@@ -640,59 +637,6 @@ export default function Home() {
             </button>
           </div>
         )}
-      </section>
-
-      <section className="section about-grid" id="about">
-        <div className="about-intro">
-          <p className="eyebrow">HOW I WORK</p>
-          <h2>
-            Technical range,
-            <br />
-            product thinking,
-            <br />
-            <em>team ownership.</em>
-          </h2>
-          <p>
-            I enjoy the full journey: understanding a workflow, designing the
-            data, shaping the interface, connecting the API, testing the edge
-            cases, and helping a team ship something coherent.
-          </p>
-          <a
-            href="https://github.com/Soyaaaa081305"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore all repositories <ArrowIcon />
-          </a>
-        </div>
-
-        <div className="capability-stack">
-          {[
-            {
-              number: "01",
-              title: "Architect the system",
-              copy: "Workflows, user roles, database schemas, APIs, permissions, and integration boundaries.",
-            },
-            {
-              number: "02",
-              title: "Build across the stack",
-              copy: "Mobile and web interfaces, backend services, SQL data, real-time events, and cloud-ready configuration.",
-            },
-            {
-              number: "03",
-              title: "Lead the delivery",
-              copy: "Task coordination, Git workflows, testing, documentation, demos, and presentation-ready polish.",
-            },
-          ].map((item) => (
-            <article key={item.number}>
-              <span>{item.number}</span>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-              </div>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section className="section skills-section">
