@@ -377,6 +377,48 @@ export default function Home() {
     };
   }, [selectedProject]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const revealItems = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
+    );
+
+    root.classList.add("motion-ready");
+
+    const updateScroll = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+      root.style.setProperty("--scroll-progress", `${Math.min(progress, 1)}`);
+      root.style.setProperty("--scroll-y", `${window.scrollY}`);
+      root.style.setProperty("--scroll-offset", `${window.scrollY * -0.035}px`);
+      root.style.setProperty(
+        "--hero-shift",
+        `${Math.min(window.scrollY * 0.1, 90)}px`,
+      );
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateScroll);
+      root.classList.remove("motion-ready");
+    };
+  }, [activeCategory, query]);
+
   const updateSpotlight = (event: React.PointerEvent<HTMLElement>) => {
     event.currentTarget.style.setProperty("--pointer-x", `${event.clientX}px`);
     event.currentTarget.style.setProperty("--pointer-y", `${event.clientY}px`);
@@ -384,6 +426,7 @@ export default function Home() {
 
   return (
     <main className="site-shell" onPointerMove={updateSpotlight}>
+      <div className="scroll-progress" aria-hidden="true" />
       <div className="ambient-grid" aria-hidden="true" />
       <header className="topbar">
         <a className="monogram" href="#top" aria-label="Back to top">
@@ -420,14 +463,14 @@ export default function Home() {
       </header>
 
       <section className="hero section" id="top">
-        <div className="hero-copy">
+        <div className="hero-glow hero-glow-one" aria-hidden="true" />
+        <div className="hero-glow hero-glow-two" aria-hidden="true" />
+        <div className="hero-copy" data-reveal>
           <p className="eyebrow">ISAIAH ANDREI NODA · FULL-STACK BUILDER</p>
-          <h1>
-            I turn complex
-            <br />
-            workflows into
-            <br />
-            <em>clear products.</em>
+          <h1 aria-label="I turn complex workflows into clear products.">
+            <span>I turn complex</span>
+            <span>workflows into</span>
+            <span className="hero-accent">clear products.</span>
           </h1>
           <p className="hero-lead">
             BSIT student, project leader, and hands-on developer building mobile,
@@ -450,9 +493,17 @@ export default function Home() {
             <span>San Pedro, Laguna</span>
             <span>Mapúa MCL · BSIT 2028</span>
           </div>
+          <a className="scroll-cue" href="#featured-title">
+            <span>Scroll to explore</span>
+            <i aria-hidden="true">↓</i>
+          </a>
         </div>
 
-        <aside className="hero-card">
+        <aside
+          className="hero-card"
+          data-reveal
+          style={{ "--reveal-delay": "140ms" } as React.CSSProperties}
+        >
           <div className="portrait-frame">
             <img src="/profile.jpg" alt="Isaiah Andrei Noda" />
             <span className="portrait-index">01</span>
@@ -477,7 +528,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <div className="ticker" aria-label="Technical specialties">
+      <div className="ticker" aria-label="Technical specialties" data-reveal>
         <div>
           <span>FULL-STACK DEVELOPMENT</span>
           <i>✦</i>
@@ -495,7 +546,7 @@ export default function Home() {
       </div>
 
       <section className="section featured" aria-labelledby="featured-title">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <div>
             <p className="eyebrow">SELECTED CASE STUDIES</p>
             <h2 id="featured-title">Built to solve real problems.</h2>
@@ -512,10 +563,16 @@ export default function Home() {
             .map((project, index) => (
               <button
                 className={`featured-card featured-card-${index + 1}`}
-                style={{ "--accent": project.accent } as React.CSSProperties}
+                style={
+                  {
+                    "--accent": project.accent,
+                    "--reveal-delay": `${index * 90}ms`,
+                  } as React.CSSProperties
+                }
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
                 type="button"
+                data-reveal
               >
                 <div className="featured-media">
                   <img src={project.image} alt={project.imageAlt} />
@@ -540,7 +597,7 @@ export default function Home() {
       </section>
 
       <section className="section project-explorer" id="work">
-        <div className="section-heading explorer-heading">
+        <div className="section-heading explorer-heading" data-reveal>
           <div>
             <p className="eyebrow">PROJECT EXPLORER</p>
             <h2>Every build tells a story.</h2>
@@ -551,7 +608,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="project-tools">
+        <div className="project-tools" data-reveal>
           <div className="filter-row" aria-label="Filter projects">
             {categories.map((category) => (
               <button
@@ -581,11 +638,17 @@ export default function Home() {
 
         {filteredProjects.length ? (
           <div className="project-grid">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <article
                 className="project-card"
-                style={{ "--accent": project.accent } as React.CSSProperties}
+                style={
+                  {
+                    "--accent": project.accent,
+                    "--reveal-delay": `${(index % 3) * 80}ms`,
+                  } as React.CSSProperties
+                }
                 key={project.id}
+                data-reveal
               >
                 <button
                   className="project-card-button"
@@ -640,7 +703,7 @@ export default function Home() {
       </section>
 
       <section className="section skills-section">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <div>
             <p className="eyebrow">TECHNICAL TOOLKIT</p>
             <h2>A stack built through projects.</h2>
@@ -702,8 +765,12 @@ export default function Home() {
                 "Project leadership",
               ],
             },
-          ].map((group) => (
-            <article key={group.title}>
+          ].map((group, index) => (
+            <article
+              key={group.title}
+              data-reveal
+              style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}
+            >
               <span className="skill-mark">{group.mark}</span>
               <h3>{group.title}</h3>
               <div>
@@ -717,7 +784,7 @@ export default function Home() {
       </section>
 
       <section className="section journey" id="journey">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <div>
             <p className="eyebrow">EDUCATION & LEADERSHIP</p>
             <h2>Learning in public. Leading in practice.</h2>
@@ -725,7 +792,7 @@ export default function Home() {
         </div>
         <div className="journey-layout">
           <div className="timeline">
-            <article>
+            <article data-reveal>
               <span className="timeline-date">2024 — 2028</span>
               <div>
                 <p>Mapúa Malayan Colleges Laguna</p>
@@ -736,7 +803,10 @@ export default function Home() {
                 </ul>
               </div>
             </article>
-            <article>
+            <article
+              data-reveal
+              style={{ "--reveal-delay": "90ms" } as React.CSSProperties}
+            >
               <span className="timeline-date">2020 — 2022</span>
               <div>
                 <p>Lyceum of Alabang</p>
@@ -748,7 +818,11 @@ export default function Home() {
               </div>
             </article>
           </div>
-          <div className="leadership-panel">
+          <div
+            className="leadership-panel"
+            data-reveal
+            style={{ "--reveal-delay": "140ms" } as React.CSSProperties}
+          >
             <span className="panel-label">CURRENTLY</span>
             <h3>President, JISSA</h3>
             <p>Junior Information Systems Security Association · AY 2026–2027</p>
@@ -767,7 +841,7 @@ export default function Home() {
       </section>
 
       <section className="section credentials" id="credentials">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <div>
             <p className="eyebrow">CONTINUOUS LEARNING</p>
             <h2>Credentials with context.</h2>
@@ -784,6 +858,10 @@ export default function Home() {
               href={certificate.url}
               target="_blank"
               rel="noreferrer"
+              data-reveal
+              style={
+                { "--reveal-delay": `${index * 55}ms` } as React.CSSProperties
+              }
             >
               <span>0{index + 1}</span>
               <div>
@@ -799,7 +877,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section contact" id="contact">
+      <section className="section contact" id="contact" data-reveal>
+        <div className="contact-aura" aria-hidden="true" />
+        <div className="contact-wordmark" aria-hidden="true">
+          CONNECT
+        </div>
         <div className="contact-orbit" aria-hidden="true">
           <span>LET’S BUILD SOMETHING USEFUL · </span>
         </div>
