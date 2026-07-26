@@ -22,6 +22,12 @@ type Project = {
   previewNote?: string;
 };
 
+const projectPlaceholder = "/projects/project-placeholder.jpeg";
+const projectPlaceholderAlt =
+  "Temporary project preview placeholder featuring a thoughtful monkey";
+const projectPlaceholderNote =
+  "Temporary preview — project screenshot coming soon";
+
 const projects: Project[] = [
   {
     id: "bikemate",
@@ -51,12 +57,12 @@ const projects: Project[] = [
       "Online payments and transaction verification",
       "Customer, technician, shop, and admin workflows",
     ],
-    image: "/projects/bikemate-logo.png",
-    imageAlt: "BikeMate application logo",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/Soyaaaa081305/bikemate-service-platform",
     accent: "#8fff5a",
     featured: true,
-    previewNote: "Brand asset from the application repository",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "mary-mother",
@@ -86,12 +92,12 @@ const projects: Project[] = [
       "Events, galleries, videos, and participation requests",
       "Responsive cloud-ready architecture",
     ],
-    image: "/projects/mary-mother.jpg",
-    imageAlt: "Mary Mother of Mercy Home project imagery",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/Soyaaaa081305/mary-mother-mercy-legacy-website",
     accent: "#67e8f9",
     featured: true,
-    previewNote: "Project imagery from the website repository",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "smash-it",
@@ -119,12 +125,12 @@ const projects: Project[] = [
       "Admin controls and user management",
       "History and operational reporting",
     ],
-    image: "/projects/smashit-court.png",
-    imageAlt: "Smash-It court reservation project artwork",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/programmerlia/smashitFINAL",
     accent: "#f0abfc",
     featured: true,
-    previewNote: "Court artwork from the project repository",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "calorie-tracker",
@@ -152,11 +158,11 @@ const projects: Project[] = [
       "Oracle triggers and audit records",
       "Email OTP registration workflows",
     ],
-    image: "/projects/calorie-tracker.png",
-    imageAlt: "GitHub preview for the Calorie Tracker project",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/Soyaaaa081305/calorie-tracker",
     accent: "#fb7185",
-    previewNote: "Repository preview",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "gerodias",
@@ -177,11 +183,11 @@ const projects: Project[] = [
       "Staff access and activity logs",
       "Printable clinic reports",
     ],
-    image: "/projects/gerodias.png",
-    imageAlt: "GitHub preview for the Gerodias Clinic Management System",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/Soyaaaa081305/gerodias-clinic-management-system",
     accent: "#60a5fa",
-    previewNote: "Repository preview",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "lamarea",
@@ -202,11 +208,11 @@ const projects: Project[] = [
       "Inventory and administrative tools",
       "Privacy-conscious portfolio packaging",
     ],
-    image: "/projects/lamarea.jpg",
-    imageAlt: "La Marea Executive Subdivision project branding",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/Soyaaaa081305/lamarea-guest-management-system",
     accent: "#fbbf24",
-    previewNote: "La Marea project branding",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "avl-tree",
@@ -227,11 +233,11 @@ const projects: Project[] = [
       "Structured algorithm flowchart",
       "Course documentation",
     ],
-    image: "/projects/avl-flowchart.png",
-    imageAlt: "AVL tree algorithm flowchart from the project documentation",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/Soyaaaa081305/avl-tree-cs102-1l-cis201",
     accent: "#a78bfa",
-    previewNote: "Flowchart rendered from the project documentation",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "tower-of-hanoi",
@@ -252,11 +258,11 @@ const projects: Project[] = [
       "Terminal-based interaction",
       "Flowcharts and development documentation",
     ],
-    image: "/projects/tower-flowchart.png",
-    imageAlt: "Towers of Hanoi flowchart from the project documentation",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     repo: "https://github.com/Soyaaaa081305/tower-of-hanoi-cs102-1l-cis201",
     accent: "#2dd4bf",
-    previewNote: "Flowchart from the project repository",
+    previewNote: projectPlaceholderNote,
   },
   {
     id: "malaya-automation",
@@ -277,11 +283,11 @@ const projects: Project[] = [
       "Report generation",
       "Message and workflow automation",
     ],
-    image: "/projects/malaya-automation.png",
-    imageAlt: "Concept preview of the Malaya organization automation dashboard",
+    image: projectPlaceholder,
+    imageAlt: projectPlaceholderAlt,
     accent: "#7dd3fc",
     private: true,
-    previewNote: "Concept preview based on the private automation workflow",
+    previewNote: projectPlaceholderNote,
   },
 ];
 
